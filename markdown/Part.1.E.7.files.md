@@ -5,7 +5,7 @@
 
 ## 创建文件
 
-创建一个文件，最简单的方法就是用 Python 的内建函数 `open()` 。
+创建一个文件，最简单的方式就是用 Python 的内建函数 `open()` 。
 
 `open()` 函数的[官方文档](https://docs.python.org/3/library/functions.html#open)很长，以下是个简化版：
 
@@ -31,7 +31,7 @@ open('test-file.txt', 'w')
 
 
 
-当然，更多的时候，我们会把这个函数的返回值，一个所谓的 [file object](https://docs.python.org/3/glossary.html#term-file-object)，保存到一个变量中，以便后面调用这个 file object 的各种方法，比如获取文件名 `file.name`，比如关闭文件 `file.close()`：
+当然，更多的时候，我们会把这个函数的返回值，一个所谓的 [file object](https://docs.python.org/3/glossary.html#term-file-object)，保存到一个变量中，以便后面调用这个 file object 的各种 Methods，比如获取文件名 `file.name`，比如关闭文件 `file.close()`：
 ```python
 f = open('test-file.txt', 'w')
 print(f.name)
@@ -53,7 +53,7 @@ if os.path.exists(f.name):
     os.remove(f.name)
     print(f'{f.name} deleted.')
 else:
-    print(f'{f.name} does not exist')
+    print(f'{f.name} does not exist.')
 ```
     test-file.txt
     test-file.txt deleted.
@@ -61,7 +61,7 @@ else:
 
 ## 读写文件
 
-创建文件之后，我们可以用 `f.write()` 方法把数据写入文件，也可以用 `f.read()` 方法读取文件。
+创建文件之后，我们可以用 `f.write()` 把数据写入文件，也可以用 `f.read()` 读取文件。
 ```python
 f = open('test-file.txt', 'w')
 f.write('first line\nsecond line\nthird line\n')
@@ -78,7 +78,7 @@ f.close()
 
 
 
-文件有很多行的时候，我们可以用 `file.readline()` 操作，这个方法每次调用，都会返回文件中的新一行。
+文件有很多行的时候，我们可以用 `file.readline()` 操作，这个 Method 每次调用，都会返回文件中的新一行。
 ```python
 f = open('test-file.txt', 'w')
 f.write('first line\nsecond line\nthird line\n')
@@ -190,7 +190,7 @@ if os.path.exists(f.name):
     os.remove(f.name)
     print(f'{f.name} deleted.')
 else:
-    print(f'{f.name} does not exist')    
+    print(f'{f.name} does not exist.')    
 ```
     first line
     
@@ -224,7 +224,7 @@ else:
 
 结论虽然有道理 —— 可这论证过程实在是太过分了罢…… 
 
-我很高兴，觉得这就是个_好例子_！并且，加工一下，会让读者觉得很精彩 —— 如果能找到一些按照同样的计算方法能得到 100 的单词，并且还是那种一看就是 “反例” 的单词……
+我很高兴，觉得这就是个_好例子_！并且，加工一下，会让读者觉得很精彩 —— 如果能找到一些按照同样的计算方式能得到 100 的单词，并且还是那种一看就是 “反例” 的单词……
 
 凭直觉，英文单词几十万，如此这般等于 100 的单词岂不是数不胜数？并且，一定会有很多负面意义的单词如此计算也等于 100 罢？然而，这种事情凭直觉是不够的，手工计算又会被累死…… 于是，面对如此荒谬的论证过程，我们竟然 “无话可说”。
 
@@ -246,7 +246,7 @@ else:
 
 那，具体的过程是什么样的呢？
 
-首先我得找到一个英文单词列表，很全的那种。这事儿用不着写程序，Google 一下就可以了。我搜索的关键字是 “[english word list](https://www.google.com/search?q=english+word+list)”，很直观吧？然后就找到一个：[https://github.com/dwyl/english-words](https://github.com/dwyl/english-words)；这个链接里有一个 [words-alpha.txt](https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt) 文件，其中包含接近 370,101 个单词，应该够用了！下载下来用程序处理就可以了！
+首先我得找到一个英文单词列表，很全的那种。这事用不着写程序，Google 一下就可以了。我搜索的关键字是 “[english word list](https://www.google.com/search?q=english+word+list)”，很直观吧？然后就找到一个：[https://github.com/dwyl/english-words](https://github.com/dwyl/english-words)；这个链接里有一个 [words-alpha.txt](https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt) 文件，其中包含接近 370,101 个单词，应该够用了！下载下来用程序处理就可以了！
 
 因为文件里每行一个单词，所以，就让程序打开文件，将文件读入一个列表，而后迭代这个列表，逐一计算那个单词每个字母所代表的数字，并加起来看看是否等于 100？如果是，就将它们输出到屏幕…… 好像不是很难。
 ```python
@@ -254,7 +254,7 @@ with open('words_alpha.txt', 'r') as file:
     for word in file.readlines():
         pass # 先用 pass 占个位，一会儿再写计算过程
 ```
-按照上面那说法，把 `a` 记为 `1`，直至把 `z` 记为 `26`，这事儿并不难，因为有 `ord()` 函数啊 —— 这个函数返回字符的 Unicode 编码：`ord('a')` 的值是 `97`，那按上面的说法，用 `ord('a') - 96` 就相当于得到了 `1` 这个数值…… 而 `ord('z') - 96` 就会得到 `26` 这个数值。
+按照上面那说法，把 `a` 记为 `1`，直至把 `z` 记为 `26`，这事并不难，因为有 `ord()` 函数啊 —— 这个函数返回字符的 Unicode 编码：`ord('a')` 的值是 `97`，那按上面的说法，用 `ord('a') - 96` 就相当于得到了 `1` 这个数值…… 而 `ord('z') - 96` 就会得到 `26` 这个数值。
 ```python
 ord('a')
 ```
@@ -399,9 +399,9 @@ with open('results.txt', 'w') as result:
 ```
 竟然这么简单就搞定了？！
 
-这 12 行的代码，在几秒钟内从接近 370,101 个英文单词中找到 3,771 个如此计算等于 100 的词汇。
+这 12 行的代码，在几秒钟内从 370,099 个英文单词中找到 3,770 个如此计算等于 100 的词汇。
 
-喝着咖啡翻一翻 `result.txt`，很快就找到了那些可以用来做反例格外恰当的词汇。
+喝着咖啡翻一翻 `result.txt`，很快就找到了那些用来做反例格外恰当的词汇。
 
 真无法想象当年的自己若是不懂编程的话现在会是什么样子……
 

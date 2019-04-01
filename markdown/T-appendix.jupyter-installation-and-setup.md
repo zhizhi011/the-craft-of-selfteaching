@@ -26,7 +26,7 @@ conda update anaconda
 conda install -c conda-forge nodejs
 conda install -c conda-forge jupyterlab # 这是用来升级 jupyter lab 到最新版的方法
 ```
-安装完毕之后，可以看看各个你将要用到的可执行命令都在什么地方，用 `which` 命令（windows下用 `where` 命令）：
+安装完毕之后，可以看看各个你将要用到的可执行命令都在什么地方，用 `which` 命令（windows 下用 `where` 命令）：
 ```bash
 which python
 python --version
@@ -299,8 +299,8 @@ jupyterlab_sublime 则可以让你在 Jupyter lab 的 cell 中，使用跟 Subli
 }
 ```
 这样就添加了 4 个快捷键：
-> * `⌥ J`: Move selected cells up
-> * `⌥ K`: Move selected cells down
+> * `⌥ J`: Move selected cells down
+> * `⌥ K`: Move selected cells up
 > * `S`: Enable output scrolling
 > * `⌥ S`: Disable output scrolling
 
@@ -333,12 +333,12 @@ _ # 执行完上面的 Cell，试试这个 Cell; 而后执行完下面的 Cell �
 
 于是，为了显示最近 evaluate 的多个值，我们总是不得不使用很多的 `print()`……
 
-如果觉得这事儿比较烦的话，可以在 Cell 最上面写上：
+如果觉得这事比较烦的话，可以在 Cell 最上面写上：
 ```python
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
 ```
-如果还想更省事儿一点，就把这个设置写入配置文件：
+如果还想更省事一点，就把这个设置写入配置文件：
 ```python
 c.InteractiveShell.ast_node_interactivity = "all"
 ```
